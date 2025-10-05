@@ -17,12 +17,11 @@
     <java.version>21</java.version>
     <spring-boot.version>3.3.4</spring-boot.version>
     <spring-cloud.version>2023.0.4</spring-cloud.version>
-    <spring-ai.version>1.0.0-M2</spring-ai.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>21</maven.compiler.release>
   </properties>
 
-  <!-- Dependency Management for Spring Boot, Spring Cloud, Spring AI -->
+  <!-- Dependency Management for Spring Boot and Spring Cloud -->
   <dependencyManagement>
     <dependencies>
       <!-- Import Spring Boot BOM -->
@@ -39,15 +38,6 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
         <version>${spring-cloud.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <!-- Spring AI BOM (covers spring-ai starters) -->
-      <dependency>
-        <groupId>org.springframework.ai</groupId>
-        <artifactId>spring-ai-bom</artifactId>
-        <version>${spring-ai.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -73,38 +63,12 @@
     </pluginManagement>
   </build>
 
-  <!-- Repositories for milestone releases (needed for Spring AI milestones) -->
-  <repositories>
-    <repository>
-      <id>spring-milestones</id>
-      <name>Spring Milestones</name>
-      <url>https://repo.spring.io/milestone</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>spring-milestones</id>
-      <name>Spring Milestones</name>
-      <url>https://repo.spring.io/milestone</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
+  <!-- Use Maven Central by default; no extra repositories needed -->
 
   <!-- Modules of the multi-module project -->
   <modules>
     <module>gateway-service</module>
+    <module>auth-service</module>
     <module>financial-service</module>
     <module>physical-service</module>
     <module>emotional-service</module>
